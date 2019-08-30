@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-const Homepage = () => {
+const Home = () => {
     
     return(
         <div>
-            <h1>Welcome.</h1>
-            <button>See Books</button>
+            <h1>Welcome to GoodReads</h1>
+         
         </div>
     )
 }
 
-export default Homepage
+export default Home

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import axiosWithAuth from '../utils/axiosWithAuth.js'
 
-const ReccForm = () => {
+const ReccForm = (props) => {
  
     const [bookdesc, setBookDesc] = useState({book_desc: ''})
     const [recsult, setRecsult] = useState([])
@@ -20,24 +20,25 @@ const ReccForm = () => {
     
         axiosWithAuth().post('https://betterbackend.herokuapp.com/api/books/recommend', bookdesc)
           .then(response => {
-              console.log(response.data);
+              console.log("within post in ReccForm", response.data);
               let result = Object.values(response.data).map(value => value )
               setRecsult(result)
           
 
-            //   props.history.push('/protected')
+              // props.history.push('/userbooks')
+
+            
           })
           .catch(err => console.log("error in BooksAPI handleSub", err.response))
     
-    
+        // props.sendData(recsult)
         setBookDesc({book_desc: ''})
+
+        // props.sendData(recsult)
       };
     
       console.log("on line 37", recsult)
 
-    const sendData = () => {
-      
-    }
 
 
     return (

@@ -46,14 +46,14 @@ export default class NavBar extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    FAQ
+                    Mission
                   </DropdownItem>
                   <DropdownItem>
-                    Careers
+                    FAQs
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Mission
+                    Careers
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

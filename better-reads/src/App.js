@@ -1,7 +1,7 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react'
 
 import './App.css';
-import { Route, Link } from "react-router-dom";  
+import { Route } from "react-router-dom";  
 
 //vanesa components
 import LoginForm from './components/LoginForm.js'
@@ -12,6 +12,7 @@ import NavBar from './components/NavBar.js'
 import ReccForm from './components/ReccForm.js'
 import UserBooks from './components/UserBooks.js'
 
+
 //contexts
 // import userContext from './contexts/userContext.js'
 
@@ -19,8 +20,7 @@ import UserBooks from './components/UserBooks.js'
 import PrivateRoute from './components/PrivateRoute.js'
 
 function App() {
-  [books, setBooks] = useState([])
-
+  const [books, setBooks] = useState([])
   const sendData = (data) => {
     setBooks(data)
   }
@@ -31,10 +31,20 @@ function App() {
       <Route exact path="/home" component={Home} />
       <Route exact path="/signup" component={SignupForm} />
       <Route exact path="/login" component={LoginForm} />
-      <PrivateRoute exact path="/protected" component={ReccForm} />
-      <PrivateRoute exact path="/userbooks" component={UserBooks} />
+      {/* <PrivateRoute exact path="/protected" component={ReccForm} /> */}
+
+      <PrivateRoute exact path="/userbooks" component={props=> <UserBooks {...props}
+                    books={books}
+          />}
+      />
+
+      <PrivateRoute exact path="/protected" component={props=> <ReccForm {...props}
+                    sendData={sendData}
+          />}
+      />
+
+
     </div>
   );
 }
-
 export default App;
