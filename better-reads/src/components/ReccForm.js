@@ -3,7 +3,7 @@ import axios from 'axios'
 import axiosWithAuth from '../utils/axiosWithAuth.js'
 
 const ReccForm = (props) => {
- 
+    console.log("in ReccForm",props)
     const [bookdesc, setBookDesc] = useState({book_desc: ''})
     const [recsult, setRecsult] = useState([])
 
@@ -22,24 +22,31 @@ const ReccForm = (props) => {
           .then(response => {
               console.log("within post in ReccForm", response.data);
               let result = Object.values(response.data).map(value => value )
-              setRecsult(result)
-          
 
-              // props.history.push('/userbooks')
+              setRecsult(result)
+
+              handleRecsult(result)
+
+              props.history.push('/userbooks')
 
             
           })
           .catch(err => console.log("error in BooksAPI handleSub", err.response))
     
-        // props.sendData(recsult)
+      
+
         setBookDesc({book_desc: ''})
+
+        
 
         // props.sendData(recsult)
       };
     
-      console.log("on line 37", recsult)
+      console.log("on line 42", recsult)
 
-
+      const handleRecsult = (res) => {
+        props.sendData(res)
+      }
 
     return (
       <div className="SearchBoxCont">
