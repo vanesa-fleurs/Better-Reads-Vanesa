@@ -10,8 +10,10 @@ import SignupForm from './components/SignupForm.js'
 // import UserPage from './components/UserPage.js'
 import NavBar from './components/NavBar.js'
 import ReccForm from './components/ReccForm.js'
-import UserSugg from './components/UserSugg.js'
 
+import UserSuggs from './components/UserSuggs.js'
+
+// import UserLibrary from './components/UserLibrary.js'
 
 //contexts
 // import userContext from './contexts/userContext.js'
@@ -31,10 +33,12 @@ function App() {
       <Route exact path="/home" component={Home} />
       <Route exact path="/signup" component={SignupForm} />
       <Route exact path="/login" component={LoginForm} />
+      {/* <Route exact path="/userlibrary" component={UserLibrary} /> */}
+
       {/* <PrivateRoute exact path="/protected" component={ReccForm} sendData={sendData}/> */}
 
 
-      <Route exact path="/userbooks" render={props => <UserSugg {...props} books={books}/>
+      <Route exact path="/userbooks" render={props => <UserSuggs {...props} books={books}/>
 
       } />
 

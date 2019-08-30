@@ -1,22 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState }from 'react'
+import axiosWithAuth from '../utils/axiosWithAuth.js'
 
 const UserSugg = (props) => {
-    console.log("userbooks props", props)
+
+    const [addBook, setAddBook] = useState({book_authors: props.author, book_desc: props.desc, book_title: props.title, cs: props.cs })
     
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("within handleSubmit", addBook);
+    
+        axiosWithAuth().post('https://betterbackend.herokuapp.com/api/books/save', addBook)
+          .then(response => {   
+              console.log("within post in UserSugg", response.data);
+              
+
+            //   props.history.push('/UserLibrary')
+
+          })
+          .catch(err => console.log("error in UserSugg handleSub", err.response))
+    }
+
     return(
         <div>
-            <h1>Top 5 Suggestions!</h1>
-
-           {props.books.map( (book) => {
-               return(
-                   <> 
-                   <div>{book.book_authors}</div>
-                   <div>{book.book_desc}</div>
-                   <div>{book.book_title}</div>
-                   </>
-               )
-           })}
-       
+           <div>{props.title}</div>
+           <div>{props.author}</div>
+           <div>{props.desc}</div>
+           <button onClick={handleSubmit} type="submit">Add</button>
         </div>
     )
 }
