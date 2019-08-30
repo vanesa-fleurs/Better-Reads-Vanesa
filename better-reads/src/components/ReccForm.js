@@ -5,6 +5,7 @@ import axiosWithAuth from '../utils/axiosWithAuth.js'
 const ReccForm = () => {
  
     const [bookdesc, setBookDesc] = useState({book_desc: ''})
+    const [recsult, setRecsult] = useState([])
 
     const changeHandler = (event) => {
         event.preventDefault();
@@ -19,7 +20,11 @@ const ReccForm = () => {
     
         axiosWithAuth().post('https://betterbackend.herokuapp.com/api/books/recommend', bookdesc)
           .then(response => {
-              console.log(response);
+              console.log(response.data);
+              let result = Object.values(response.data).map(value => value )
+              setRecsult(result)
+          
+
             //   props.history.push('/protected')
           })
           .catch(err => console.log("error in BooksAPI handleSub", err.response))
@@ -27,19 +32,13 @@ const ReccForm = () => {
     
         setBookDesc({book_desc: ''})
       };
+    
+      console.log("on line 37", recsult)
 
+    const sendData = () => {
+      
+    }
 
-
-
-    // useEffect ( ()=> {
-    //     axiosWithAuth().get
-    //     .then(response => {
-    //         console.log("inBooksAPI get", response)
-    //     //   setBook(response.data)
-    //     //   console.log("in Books API get", response.data)
-    //     })
-    //     .catch(error => {console.log("error in Books API get", error)})
-    // }, [])
 
     return (
       <div className="SearchBoxCont">
@@ -54,6 +53,7 @@ const ReccForm = () => {
               />
               <button type="submit">Find Now!</button>
           </form>
+          
           
       </div>
     )

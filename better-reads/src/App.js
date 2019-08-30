@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 
 import './App.css';
 import { Route, Link } from "react-router-dom";  
@@ -10,6 +10,7 @@ import SignupForm from './components/SignupForm.js'
 // import UserPage from './components/UserPage.js'
 import NavBar from './components/NavBar.js'
 import ReccForm from './components/ReccForm.js'
+import UserBooks from './components/UserBooks.js'
 
 //contexts
 // import userContext from './contexts/userContext.js'
@@ -18,7 +19,11 @@ import ReccForm from './components/ReccForm.js'
 import PrivateRoute from './components/PrivateRoute.js'
 
 function App() {
-  
+  [books, setBooks] = useState([])
+
+  const sendData = (data) => {
+    setBooks(data)
+  }
 
   return (
     <div className="App">
@@ -27,6 +32,7 @@ function App() {
       <Route exact path="/signup" component={SignupForm} />
       <Route exact path="/login" component={LoginForm} />
       <PrivateRoute exact path="/protected" component={ReccForm} />
+      <PrivateRoute exact path="/userbooks" component={UserBooks} />
     </div>
   );
 }
